@@ -47,16 +47,21 @@
 @endsection
 
 @section('javascript')
-	
+
+	<script src="{{asset('js/core.js')}}"></script>
+
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
 	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
 	<script>
 		$(document).ready( function () {
+
+			var server_side = (sessionStorage.getItem("serverSideRender") == 1) ? true : false;
+
 			$('#companies-table').DataTable({
 				processing: true,
-				serverSide: '{{ true }}',
+				serverSide: server_side,
 				ajax: '{{ route('companies.all') }}',
 				columns: [
 					{ data: 'id', name: 'id' },

@@ -36,7 +36,6 @@
                     </table>
                     
                     @include('partials.serverSideRenderBtn')
-					
 
                 </div>
             </div>
@@ -49,6 +48,8 @@
 @endsection
 
 @section('javascript')
+
+	
 	
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
@@ -57,9 +58,11 @@
 	<script>
 		$(document).ready( function () {
 
+			var server_side = (sessionStorage.getItem("serverSideRender") == 1) ? true : false;
+
 			$('#employees-table').DataTable({
 				processing: true,
-				serverSide: true,
+				serverSide: server_side,
 				ajax: '{{ route('employees.all') }}',
 				columns: [
 					{ data: 'id', name: 'id' },
@@ -70,7 +73,8 @@
 					{ data: 'company', name: 'company' },
 					{ data: 'actions', name: 'actions' , orderable: false, searchable: false}
 				]
-            });
+			});
+			
 
 		} );
 	</script>
