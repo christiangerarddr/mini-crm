@@ -36,8 +36,8 @@
 					</table>
 
 					<div class="custom-control custom-switch">
-						<input type="checkbox" class="custom-control-input" id="customSwitch1">
-						<label class="custom-control-label" for="customSwitch1">Server Side Rendering</label>
+						<input type="checkbox" class="custom-control-input client-side-rendering" id="customSwitch1">
+						<label class="custom-control-label" for="customSwitch1">Client Side Rendering</label>
 					</div>
 
                 </div>
@@ -58,10 +58,11 @@
 
 	<script>
 		$(document).ready( function () {
+
 			$('#employees-table').DataTable({
 				processing: true,
-				serverSide: '{{ true }}',
-				ajax: '{{ route('companies.all') }}',
+				serverSide: my_switch,
+				ajax: '{{ route('employees.all') }}',
 				columns: [
 					{ data: 'id', name: 'id' },
 					{ data: 'first_name', name: 'first_name' },
@@ -71,7 +72,8 @@
 					{ data: 'company', name: 'company' },
 					{ data: 'actions', name: 'actions' , orderable: false, searchable: false}
 				]
-			});
+            });
+
 		} );
 	</script>
 

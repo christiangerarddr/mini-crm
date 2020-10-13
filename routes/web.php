@@ -28,13 +28,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/company/all', 'CampanyController@showAll')->name('companies.all');
+    Route::get('/employee/all', 'EmployeesController@showAll')->name('employees.all');
     
     Route::resource('company', 'CampanyController');
     Route::resource('employee', 'EmployeesController');
 
 });
 
-Route::get('/test', function(){
-
-});
+Route::get('/test', 'EmployeesController@showAll');
 

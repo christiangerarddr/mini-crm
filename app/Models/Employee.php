@@ -9,4 +9,8 @@ class Employee extends Model
     protected $fillable = [
         'company_id',
     ];
+
+    public function company(){
+        return $this->belongsTo('App\Models\Company');
+    }
 }

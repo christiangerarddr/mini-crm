@@ -2,11 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use DataTables;
+use DB;
 
 class EmployeesController extends Controller
 {
+
+    public function showAll(){
+
+        $employees = Employee::query();
+
+        return DataTables::eloquent($employees)
+            ->addColumn('company', function ($employee) {
+                return $employee->company->name;
+            })
+            ->addColumn('actions', function($employee) {
+                return  '<a href="/employee/'. $employee->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>' . '<a href="/employee/'. $employee->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
+            })
+            ->rawColumns(['actions'])
+            ->toJson();
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +33,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        //
+        return view('sections.employee.browse');
     }
 
     /**
