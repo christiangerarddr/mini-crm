@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* WELCOME LOGIN */
+
+#inputPassword {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* WELCOME LOGIN */
+
+/* SIDEBAR */
+
+#sidebarMenu .nav-item {
+    font-weight: 600;
+    vertical-align: baseline;
+}
+
+#sidebarMenu {
+    min-height: 95vh;
+    overflow: hidden;
+}
+
+/* SIDEBAR */
+
+.img-container {
+    height: 100px;
+    width: 100px;
+}
