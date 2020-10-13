@@ -14,13 +14,13 @@ class AddForeignKeysToEmployeesTable extends Migration
     public function up()
     {
         Schema::table('employees', function (Blueprint $table) {
+            
             $table->unsignedBigInteger('company_id')->nullable();
 
             $table->foreign('company_id')
                 ->references('id')
       			->on('companies')
-      			->onDelete('restrict')
-      			->onUpdate('cascade');
+      			->onDelete('cascade');
         });
     }
 

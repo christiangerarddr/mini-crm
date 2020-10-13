@@ -20,8 +20,8 @@ $factory->define(Employee::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'email' => $faker->unique()->safeEmail,
-        'phone' => $faker->unique()->randomDigit,
-        'company_id' => $faker->numberBetween(1, 60)
+        'email' => $faker->safeEmail,
+        'phone' => $faker->randomDigit(11),
+        'company_id' => $faker->numberBetween(1, 40)
     ];
 });
