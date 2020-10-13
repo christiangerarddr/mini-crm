@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container" style="height: 100vh">
+<div class="container-fluid" style="height: 100vh">
 	<div class="row justify-content-start">
 		<div class="col-md-12">
 			
@@ -34,10 +34,7 @@
 						</thead>
 					</table>
 
-					<div class="custom-control custom-switch">
-						<input type="checkbox" class="custom-control-input" id="customSwitch1">
-						<label class="custom-control-label" for="customSwitch1">Server Side Rendering</label>
-					</div>
+					@include('partials.serverSideRenderBtn')
 
                 </div>
             </div>

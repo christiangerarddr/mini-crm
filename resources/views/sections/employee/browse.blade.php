@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-<div class="container" style="height: 100vh">
+<div class="container-fluid" style="height: 100vh">
 	<div class="row justify-content-start">
 		<div class="col-md-12">
 			
 			<div class="card">
                 <div class="card-header">
-					Company
+					Employees
 					
 					<span class="float-right">
 					<a href="{{route('employee.create')}}"><button class="btn btn-sm btn-success">create</button></a>
@@ -33,12 +33,10 @@
 								<th scope="col">Actions</th>
 							</tr>
 						</thead>
-					</table>
-
-					<div class="custom-control custom-switch">
-						<input type="checkbox" class="custom-control-input client-side-rendering" id="customSwitch1">
-						<label class="custom-control-label" for="customSwitch1">Client Side Rendering</label>
-					</div>
+                    </table>
+                    
+                    @include('partials.serverSideRenderBtn')
+					
 
                 </div>
             </div>
@@ -61,7 +59,7 @@
 
 			$('#employees-table').DataTable({
 				processing: true,
-				serverSide: my_switch,
+				serverSide: true,
 				ajax: '{{ route('employees.all') }}',
 				columns: [
 					{ data: 'id', name: 'id' },

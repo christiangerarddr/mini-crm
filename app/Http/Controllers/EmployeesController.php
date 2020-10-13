@@ -19,7 +19,12 @@ class EmployeesController extends Controller
                 return $employee->company->name;
             })
             ->addColumn('actions', function($employee) {
-                return  '<a href="/employee/'. $employee->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>' . '<a href="/employee/'. $employee->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
+
+                $add_btn = '<a href="/employee/'. $employee->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>';
+                $delete_btn = '<a href="/employee/'. $employee->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
+
+                return  $add_btn . $delete_btn;
+                
             })
             ->rawColumns(['actions'])
             ->toJson();
@@ -33,7 +38,9 @@ class EmployeesController extends Controller
      */
     public function index()
     {
+
         return view('sections.employee.browse');
+
     }
 
     /**

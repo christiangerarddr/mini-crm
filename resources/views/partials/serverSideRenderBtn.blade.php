@@ -1,0 +1,1 @@
+<a href="#" class="btn btn-sm btn-secondary">Toggle Table Rendering</a>

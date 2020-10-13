@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
+use DataTables;
 use DB;
 
 class CampanyController extends Controller
@@ -17,14 +17,19 @@ class CampanyController extends Controller
 
     public function showAll(){
 
-        $companies = DB::table('companies')->select(['id', 'logo', 'name', 'email', 'website']);
+        $companies = Company::query();
 
-        return Datatables::of($companies)
+        return DataTables::eloquent($companies)
             ->addColumn('actions', function($company) {
-                return  '<a href="/company/'. $company->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>' . '<a href="/company/'. $company->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
+
+                $add_btn = '<a href="/company/'. $company->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>';
+                $delete_btn = '<a href="/company/'. $company->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
+
+                return   $add_btn . $delete_btn;
+                
             })
             ->rawColumns(['actions'])
-            ->make(true);
+            ->toJson();
 
     }
 

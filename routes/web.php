@@ -35,5 +35,5 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::get('/test', 'EmployeesController@showAll');
+Route::get('/test', 'CampanyController@showAll');
 
