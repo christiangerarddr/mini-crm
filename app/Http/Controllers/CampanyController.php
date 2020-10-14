@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use DataTables;
 use DB;
 use Storage;
+use Auth;
+use Mail;
+use App\Mail\NotifyNewCompanyMail;
+
+use App\Listeners\newCompanyHasCreated;
+use App\Events\newCompanyHasCreatedEvent;
 
 class CampanyController extends Controller
 {
@@ -68,9 +74,13 @@ class CampanyController extends Controller
 
         if ($request->hasFile('logo')) {
             $data['logo'] = $this->saveLogo($data['logo']);
+        } else {
+            $data['logo'] = asset('default.png');
         }
 
         Company::create($data);
+
+        Mail::to(auth::user()->email)->send(new NotifyNewCompanyMail());
 
         return redirect(route('company.index'));
 
