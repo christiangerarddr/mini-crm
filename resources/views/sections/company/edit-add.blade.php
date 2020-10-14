@@ -11,11 +11,13 @@
 			
 			<div class="card">
                 <div class="card-header">
+					<h1>
 					@if(isset($company))
 					Edit Company
 					@else
 					Create Company
 					@endif
+					</h1>
 				</div>
 
                 <div class="card-body">

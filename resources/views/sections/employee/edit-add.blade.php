@@ -15,11 +15,13 @@
 
             <div class="card">
                 <div class="card-header">
+                    <h1>
                     @if(isset($employee))
                         Edit Employee
                     @else
                         Create Employee
                     @endif
+                    </h1>
                 </div>
 
                 <div class="card-body">
