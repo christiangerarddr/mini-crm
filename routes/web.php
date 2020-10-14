@@ -10,28 +10,31 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('login');
-})->middleware('guest');
-
 Auth::routes(['register' => false]);
+
+Route::group(['middleware' => ['guest']], function () {
+
+    Route::get('/', function () {
+        return view('login');
+    });
+
+});
 
 Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
-    Route::get('/settings', 'HomeController@showSettings')->name('settings');
-
     Route::group(['middleware' => ['admin']], function () {
-    
+        
         Route::post('/profile/{id}', 'ProfileController@show')->name('profile');
+        Route::get('/settings', 'HomeController@showSettings')->name('settings');
 
     });
 
     Route::get('/company/all', 'CampanyController@showAll')->name('companies.all');
     Route::get('/employee/all', 'EmployeesController@showAll')->name('employees.all');
     
+    Route::resource('user', 'UserController');
     Route::resource('company', 'CampanyController');
     Route::resource('employee', 'EmployeesController');
 
