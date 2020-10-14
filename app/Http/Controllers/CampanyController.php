@@ -45,7 +45,7 @@ class CampanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('sections.company.edit-add');
     }
 
     /**
@@ -56,7 +56,9 @@ class CampanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validateRequest();
+
+        Company::create($data);
     }
 
     /**
@@ -103,4 +105,17 @@ class CampanyController extends Controller
     {
         //
     }
+
+
+    public function validateRequest(){
+
+        return request()->validate([
+            'logo' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'website' => 'required'
+        ]);
+
+    }
+
 }

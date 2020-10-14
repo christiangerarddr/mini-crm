@@ -20,14 +20,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (\Request::is('company')) active @endif"
+                        <a class="nav-link @if ((\Request::is('company')) || (\Request::is('company/*'))) active @endif"
                             href="{{ route('company.index') }}">
                             <i class="ni ni-building text-orange"></i>
                             <span class="nav-link-text">Companies</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (\Request::is('employee')) active @endif"
+                        <a class="nav-link @if ((\Request::is('employee')) || (\Request::is('employee/*'))) active @endif"
                             href="{{ route('employee.index') }}">
                             <i class="ni ni-archive-2 text-primary"></i>
                             <span class="nav-link-text">Employees</span>

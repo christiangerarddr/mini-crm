@@ -15,7 +15,7 @@ class UserTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $response = $this->post('/user', [
+        $response = $this->actingAs(User::first())->post('/user', [
             'name' => 'user',
             'email' => 'user@admin.com',
             'password' => 'password',
@@ -30,7 +30,7 @@ class UserTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $response = $this->patch('/user/' . User::all()->last()->id, [
+        $response = $this->actingAs(User::first())->patch('/user/' . User::all()->last()->id, [
             'name' => 'updated user',
             'email' => 'user@admin.com',
             'password' => 'password',
@@ -43,13 +43,13 @@ class UserTest extends TestCase
     /** @test */
     public function all_input_fields_are_required(){
 
-        $response = $this->post('/user', [
+        $response = $this->actingAs(User::first())->post('/user', [
             'name' => 'test user',
             'email' => '',
             'password' => 'password',
         ]);
 
-        $response->assertSessionHasErrors('email');
+        $response->assertSessionHasErrors(['email']);
 
     }
 
@@ -58,12 +58,12 @@ class UserTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $response = $this->delete('/user/' . User::all()->last()->id);
+        $response = $this->actingAs(User::first())->delete('/user/' . User::all()->last()->id);
 
         $response->assertOk();
 
     }
 
-    //  ./vendor/bin/phpunit --filter a_user_can_be_created_by_admin
+    //  ./vendor/bin/phpunit --filter all_input_fields_are_required
 
 }

@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use App\Models\User;
 use App\Models\Company;
 
 class CompanyTest extends TestCase
@@ -15,22 +16,24 @@ class CompanyTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $response = $this->post('/company', [
-            'name' => 'user',
-            'email' => 'user@admin.com',
-            'password' => 'password',
+        $response = $this->actingAs(User::first())->post('/company', [
+            'logo' => 'http://localhost:8000/storage/default.png',
+            'name' => 'test company',
+            'email' => 'testcompany@admin.com',
+            'website' => 'testcompany.com'
         ]);
 
-        $this->assertCount(2, Company::all());
+        $this->assertCount(1, Company::where('name', '=', 'test company')->get());
 
     }
 
     public function all_input_fields_are_required(){
 
-        $response = $this->post('/company', [
-            'name' => 'test user',
+        $response = $this->actingAs(User::first())->post('/company', [
+            'logo' => 'http://localhost:8000/storage/default.png',
+            'name' => 'test company',
             'email' => '',
-            'password' => 'password',
+            'website' => 'testcompany.com'
         ]);
 
         $response->assertSessionHasErrors('email');
@@ -38,6 +41,6 @@ class CompanyTest extends TestCase
     }
 
 
-    //  ./vendor/bin/phpunit --filter a_user_can_be_created_by_admin
+    //  ./vendor/bin/phpunit --filter all_input_fields_are_required
 
 }
