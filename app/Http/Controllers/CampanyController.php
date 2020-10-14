@@ -122,10 +122,10 @@ class CampanyController extends Controller
     public function validateRequest(){
 
         return request()->validate([
-            'name' => 'required|unique:companies,name',
+            'name' => 'required',
             'logo' => 'file',
-            'email' => 'required|unique:companies,email',
-            'website' => 'required|unique:companies,website'
+            'email' => 'required',
+            'website' => 'required'
         ]);
 
     }

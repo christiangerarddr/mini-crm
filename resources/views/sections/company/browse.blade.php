@@ -60,7 +60,7 @@
 					{ data: 'id', name: 'id' },
 					{ data: 'logo', name: 'logo',
                     	render: function( data, type, full, meta ) {
-							return "<img src=" + data + ">";
+							return "<img src=" + data + " height='100px' weight='100px'>";
 						}
                     },
 					{ data: 'name', name: 'name' },
