@@ -57,7 +57,18 @@ class CompanyTest extends TestCase
 
     }
 
+    /** @test */
+    public function a_company_can_be_deleted_by_admin(){
 
-    //  ./vendor/bin/phpunit --filter a_compnay_can_be_edited_by_admin
+        $this->withoutExceptionHandling();
+
+        $response = $this->actingAs(User::first())->delete('/company/' . Company::all()->last()->id);
+
+        $response->assertOk();
+
+    }
+
+
+    //  ./vendor/bin/phpunit --filter a_company_can_be_deleted_by_admin
 
 }
