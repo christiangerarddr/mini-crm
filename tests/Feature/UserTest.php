@@ -16,8 +16,8 @@ class UserTest extends TestCase
         $this->withoutExceptionHandling();
 
         $response = $this->post('/user', [
-            'name' => 'test user',
-            'email' => 'test2@admin.com',
+            'name' => 'user',
+            'email' => 'user@admin.com',
             'password' => 'password',
         ]);
 
@@ -31,12 +31,12 @@ class UserTest extends TestCase
         $this->withoutExceptionHandling();
 
         $response = $this->patch('/user/' . User::all()->last()->id, [
-            'name' => 'test updated user',
-            'email' => 'test2@admin.com',
+            'name' => 'updated user',
+            'email' => 'user@admin.com',
             'password' => 'password',
         ]);
 
-        $this->assertEquals('test updated user', User::all()->last()->name);
+        $this->assertEquals('updated user', User::all()->last()->name);
 
     }
 
@@ -53,6 +53,17 @@ class UserTest extends TestCase
 
     }
 
-    //  ./vendor/bin/phpunit --filter a_user_can_be_edited_by_admin
+    /** @test */
+    public function a_user_can_be_deleted_by_admin(){
+
+        $this->withoutExceptionHandling();
+
+        $response = $this->delete('/user/' . User::all()->last()->id);
+
+        $response->assertOk();
+
+    }
+
+    //  ./vendor/bin/phpunit --filter a_user_can_be_created_by_admin
 
 }
