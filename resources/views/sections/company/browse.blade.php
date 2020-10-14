@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid" style="height: 100vh">
+<div class="container-fluid pt-5" style="height: 100vh">
 	<div class="row justify-content-start">
 		<div class="col-md-12">
 			
@@ -47,12 +47,6 @@
 @endsection
 
 @section('javascript')
-
-	<script src="{{asset('js/core.js')}}"></script>
-
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-
-	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
 	<script>
 		$(document).ready( function () {

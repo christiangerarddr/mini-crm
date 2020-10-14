@@ -9,9 +9,21 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link href="/assets/img/brand/favicon.png" rel="icon" type="image/png">
+
+    <!-- Icons -->
+    <link href="{{asset('argon/vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
+    <link href="{{asset('argon/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- Argon JS -->
+    <script src="{{asset('argon/js/argon.min.js')}}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -22,29 +34,35 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/core.css') }}" rel="stylesheet">
 
+    <!-- Argon CSS -->
+    <link type="text/css" href="{{asset('argon/css/argon.min.css')}}" rel="stylesheet">
+
+    <script src="{{asset('js/core.js')}}"></script>
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
     @yield('styles')
 
 </head>
 <body>
     <div id="app">
 
-        {{-- @isset($message)
-        @include('partials.alert')
-        @endif --}}
-
-        @include('partials.navbar')
-
-        <div class="container-fluid row">
-        
         @if (Auth::user())
             @include('partials.sidebar')
         @endif
+    
+        <main class="main-content" id="panel">
+            
+            @if (Auth::user())
+            @include('partials.navbar')
+            @endif
 
-        <main class="col py-4 border-left">
             @yield('content')
+
         </main>
 
-        </div>
     </div>
 
     @yield('javascript')
