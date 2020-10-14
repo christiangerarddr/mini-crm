@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::resource('user', 'UserController');
+    Route::get('/user/{users}/delete', 'UserController@destroy')->name('users.delete');
+    Route::get('/show_all_users', 'UserController@showAll')->name('users.all');
 
     Route::resource('company', 'CampanyController');
     Route::get('/company/{company}/delete', 'CampanyController@destroy')->name('company.delete');
@@ -44,5 +46,5 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::get('/test', 'CampanyController@update');
+Route::get('/test', 'UserController@showAll');
 

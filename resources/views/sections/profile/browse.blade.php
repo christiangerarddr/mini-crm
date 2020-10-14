@@ -14,7 +14,7 @@
                         <p>Email: {{$user->email}}</p>
                         <p>User Roles: 
                             @foreach ($user->roles as $role)
-                                {{$role->name . ", "}}
+                                {{$role->name}}
                             @endforeach
                         </p>
 

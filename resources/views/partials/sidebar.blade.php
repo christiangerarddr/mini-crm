@@ -41,7 +41,7 @@
                 </h6>
                 <ul class="navbar-nav">
 					<li class="nav-item">
-                        <a class="nav-link" href="profile.html">
+                        <a class="nav-link" href="{{route('user.index')}}">
                             <i class="ni ni-single-02 text-green"></i>
                             <span class="nav-link-text">Users</span>
                         </a>

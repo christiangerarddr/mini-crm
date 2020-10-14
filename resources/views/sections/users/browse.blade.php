@@ -11,15 +11,15 @@
 			
 			<div class="card">
                 <div class="card-header">
-					
+
 					<div class="row">
 
 						<div class="col-lg-2">
-							<h1>Companies</h1>
+							<h1>Users</h1>
 						</div>
 					
 						<div class="col-lg-6">
-							<a href="{{route('company.create')}}"><button class="btn btn-success">create</button></a>
+							<a href="{{route('employee.create')}}"><button class="btn btn-success">create</button></a>
 						</div>
 
 					</div>
@@ -28,23 +28,20 @@
 
                 <div class="card-body">
 					
-					<table id="companies-table" class="table table-hover ">
+					<table id="users-table" class="table table-hover ">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">Logo</th>
 								<th scope="col">Name</th>
 								<th scope="col">Email</th>
-								<th scope="col">Website</th>
-								<th scope="col">Actions</th>
+								<th scope="col">Roles</th>
+                                <th scope="col">Actions</th>
 							</tr>
 						</thead>
-					</table>
+                    </table>
 
                 </div>
-            </div>
+			</div>
 			
-			
-
 		</div>
 	</div>
 </div>
@@ -53,26 +50,23 @@
 @section('javascript')
 
 	<script>
+
 		$(document).ready( function () {
 
 			var server_side = (sessionStorage.getItem("serverSideRender") == 1) ? true : false;
 
-			$('#companies-table').DataTable({
+			$('#users-table').DataTable({
 				processing: true,
 				serverSide: server_side,
-				ajax: '{{ route('companies.all') }}',
+				ajax: '/show_all_users',
 				columns: [
-					{ data: 'logo', name: 'logo',
-                    	render: function( data, type, full, meta ) {
-							return "<img src=" + data + " height='100px' weight='100px'>";
-						}
-                    },
 					{ data: 'name', name: 'name' },
 					{ data: 'email', name: 'email' },
-					{ data: 'website', name: 'website' },
-					{ data: 'actions', name: 'actions' , orderable: false, searchable: false}
+					{ data: 'role', name: 'role' },
+                    { data: 'actions', name: 'actions' , orderable: false, searchable: false}
 				]
 			});
+			
 
 		} );
 	</script>
