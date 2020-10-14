@@ -18,7 +18,12 @@ Route::group(['middleware' => ['guest']], function () {
         return view('login');
     });
 
+    Route::resource('user', 'UserController');
+    Route::resource('company', 'CampanyController');
+    Route::resource('employee', 'EmployeesController');
+    
 });
+
 
 Route::group(['middleware' => ['auth']], function () {
     
@@ -34,9 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/company/all', 'CampanyController@showAll')->name('companies.all');
     Route::get('/employee/all', 'EmployeesController@showAll')->name('employees.all');
     
-    Route::resource('user', 'UserController');
-    Route::resource('company', 'CampanyController');
-    Route::resource('employee', 'EmployeesController');
+    
 
 });
 
