@@ -80,12 +80,12 @@
                             
                             <div class="form-group col-lg-12">
                                 <label for="company" class="form-control-label">Company</label>
-                                <select name="company" class="form-control" id="company">
+                                <select name="company_id" class="form-control" id="company">
                                     @if(isset($employee))
-                                    <option value=">{{$employee->company_id}}">{{$employee->company->name}}</option>
+                                    <option value="{{$employee->company_id}}">{{$employee->company->name}}</option>
                                     @endif
                                     @foreach($companies as $company)
-                                    <option value=">{{$company->id}}">{{$company->name}}</option>
+                                    <option value="{{$company->id}}">{{$company->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

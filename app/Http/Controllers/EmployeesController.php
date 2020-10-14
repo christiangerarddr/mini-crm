@@ -66,10 +66,10 @@ class EmployeesController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateRequest();
-
+        
         Employee::create($data);
 
-        // return redirect(route('employee.index'));
+        return redirect(route('employee.index'));
     }
 
     /**
@@ -100,7 +100,7 @@ class EmployeesController extends Controller
 
         $employee->update($data);
 
-        return redirect(route('company.index'));
+        return redirect(route('employee.index'));
     }
 
     /**
@@ -113,7 +113,7 @@ class EmployeesController extends Controller
     {
         $employee->delete();
 
-        return redirect(route('company.index'));
+        return redirect(route('employee.index'));
 
     }
 

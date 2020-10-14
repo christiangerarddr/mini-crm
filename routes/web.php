@@ -33,11 +33,13 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::resource('user', 'UserController');
+
     Route::resource('company', 'CampanyController');
     Route::get('/company/{company}/delete', 'CampanyController@destroy')->name('company.delete');
-    Route::resource('employee', 'EmployeesController');
-
     Route::get('/companies', 'CampanyController@showAll')->name('companies.all');
+
+    Route::resource('employee', 'EmployeesController');
+    Route::get('/employee/{employee}/delete', 'EmployeesController@destroy')->name('employee.delete');
     Route::get('/employees', 'EmployeesController@showAll')->name('employees.all');
 
 });
