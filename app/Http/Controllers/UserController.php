@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DataTables;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -44,7 +45,10 @@ class UserController extends Controller
 
     public function create()
     {
-        //
+        $roles = Role::all();
+
+        return view('sections.users.edit-add', compact('roles'));
+
     }
 
     public function store(Request $request)
@@ -54,18 +58,17 @@ class UserController extends Controller
 
         User::create($data);
 
-        // return redirect()->view('dashboard');
+        return redirect(route('user.index'));
 
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
     {
-        //
+        $roles = Role::all();
+
+        $user = User::find($id);
+
+        return view('sections.users.edit-add', compact('roles', 'user'));
     }
 
     public function update(Request $request, $id)
@@ -73,11 +76,15 @@ class UserController extends Controller
         $data = $this->validateRequest();
 
         User::find($id)->update($data);
+
+        return redirect(route('user.index'));
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
+
+        return redirect(route('user.index'));
     }
 
     public function validateRequest(){

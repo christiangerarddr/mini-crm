@@ -19,7 +19,7 @@
 						</div>
 					
 						<div class="col-lg-6">
-							<a href="{{route('employee.create')}}"><button class="btn btn-success">create</button></a>
+							<a href="{{route('user.create')}}"><button class="btn btn-success">create</button></a>
 						</div>
 
 					</div>

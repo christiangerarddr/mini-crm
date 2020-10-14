@@ -4,13 +4,9 @@
 
 			<ul class="navbar-nav align-items-center  ml-auto ">
 				<li class="nav-item dropdown">
-					<a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+					<a class="nav-link pr-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">
 						<div class="media align-items-center">
-							<span class="avatar avatar-sm rounded-circle">
-								<img alt="Image placeholder"
-									src="{{ asset('argon/img/theme/team-1.jpg') }}">
-							</span>
 							<div class="media-body  ml-2  d-none d-lg-block">
 								<span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
 							</div>
