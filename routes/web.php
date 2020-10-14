@@ -21,7 +21,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::resource('user', 'UserController');
     Route::resource('company', 'CampanyController');
     Route::resource('employee', 'EmployeesController');
-    
+
 });
 
 
@@ -43,5 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::get('/test', 'CampanyController@showAll');
+Route::get('/test', function(){
+    dd(App\Models\User::all()->last()->name);
+});
 
