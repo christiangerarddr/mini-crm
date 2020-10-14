@@ -36,13 +36,13 @@
 				</a>
 			</li>
             <li class="nav-item">
-				<a class="nav-link" href="profile.html">
+				<a class="nav-link @if (\Request::is('profile/*')) active @endif" href="{{ route('profile', ['id' => auth::user()->id]) }}" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
 					<i class="ni ni-single-02 text-yellow"></i>
 					<span class="nav-link-text">Profile</span>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="profile.html">
+				<a class="nav-link @if (\Request::is('settings')) active @endif" href="{{route('settings')}}">
 				  <i class="ni ni-settings-gear-65"></i>
 				  <span class="nav-link-text">Settings</span>
 				</a>

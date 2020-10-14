@@ -34,8 +34,6 @@
 						</thead>
 					</table>
 
-					@include('partials.serverSideRenderBtn')
-
                 </div>
             </div>
 			

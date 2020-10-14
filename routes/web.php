@@ -21,6 +21,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
+    Route::get('/settings', 'HomeController@showSettings')->name('settings');
+
     Route::group(['middleware' => ['admin']], function () {
     
         Route::post('/profile/{id}', 'ProfileController@show')->name('profile');

@@ -27,7 +27,7 @@
                 @csrf
               </form>
 
-              <a href="#!" class="dropdown-item">
+              <a href="{{ route('settings') }}" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Settings</span>
               </a>

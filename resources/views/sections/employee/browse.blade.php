@@ -34,14 +34,10 @@
 							</tr>
 						</thead>
                     </table>
-                    
-                    @include('partials.serverSideRenderBtn')
 
                 </div>
-            </div>
+			</div>
 			
-			
-
 		</div>
 	</div>
 </div>
