@@ -59,12 +59,20 @@ class CampanyController extends Controller
     {
 
         $data = $this->validateRequest();
-        
-        $data['logo'] = $data['logo']->getClientOriginalName() . today()->format('dmYHis');
 
-        Storage::disk('local')->put('company_logo/' . $data['logo'], $request->logo);
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $name = $data['logo']->getClientOriginalName() . today()->format('dmYHis');
+            $destinationPath = public_path('/storage/company_logo');
+            $imagePath = $destinationPath. "/".  $name;
+            $image->move($destinationPath, $name);
+            $data['logo'] = $imagePath;
+        }
 
         Company::create($data);
+
+        return redirect(route('company.index'));
+
     }
 
     /**
@@ -87,8 +95,16 @@ class CampanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-
         $data = $this->validateRequest();
+
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $name = $data['logo']->getClientOriginalName() . today()->format('dmYHis');
+            $destinationPath = public_path('/storage/company_logo');
+            $imagePath = $destinationPath. "/".  $name;
+            $image->move($destinationPath, $name);
+            $data['logo'] = $imagePath;
+        }
 
         $company->update($data);
 
@@ -117,6 +133,7 @@ class CampanyController extends Controller
 
         return request()->validate([
             'name' => 'required',
+            'logo' => 'file',
             'email' => 'required',
             'website' => 'required'
         ]);

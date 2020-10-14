@@ -40,7 +40,7 @@
 
 						<div class="form-group">
 							<label for="example-text-input" class="form-control-label">Company Name</label>
-							<input class="form-control" type="text" value="{{$company->name}}" name="name" id="company-text-input">
+							<input class="form-control" type="text" value="@if(isset($company)){{$company->name}}@endif" name="name" id="company-text-input">
 						</div>
 						<div class="form-group">
 							<label for="example-search-input" class="form-control-label">Logo</label>
@@ -48,11 +48,11 @@
 						</div>
 						<div class="form-group">
 							<label for="example-email-input" class="form-control-label">Email</label>
-							<input class="form-control" type="email" name="email" value="{{$company->email}}" id="company-email-input">
+							<input class="form-control" type="email" name="email" value="@if(isset($company)){{$company->email}}@endif" id="company-email-input">
 						</div>
 						<div class="form-group">
 							<label for="example-url-input" class="form-control-label">Website</label>
-							<input class="form-control" type="text" name="website" value="{{$company->website}}" id="company-url-input">
+							<input class="form-control" type="text" name="website" value="@if(isset($company)){{$company->website}}@endif" id="company-url-input">
 						</div>
 
 						<button type="submit" class="btn btn-success">Submit</button>

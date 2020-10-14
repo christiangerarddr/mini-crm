@@ -13,8 +13,9 @@
                 <div class="card-header">
 					Company
 					
-					<span class="float-right">
-					<a href="{{route('company.create')}}"><button class="btn btn-sm btn-success">create</button></a>
+					<span class="ml-2">
+					<a href="{{route('company.create')}}"><button class="btn btn-success">create</button></a>
+					<a href="{{route('company.create')}}"><button class="btn btn-danger">mass delete</button></a>
 					</span>
 
 				</div>
