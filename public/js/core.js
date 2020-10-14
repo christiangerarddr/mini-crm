@@ -1,14 +1,14 @@
-$(document).ready( function () {
+$(document).ready(function() {
 
 
-    $("#serverSideRenderBtn").on('click',function(){
+    $("#serverSideRenderBtn").on('click', function() {
         switchSide();
     });
 
-    function switchSide(){
-        if((sessionStorage.getItem("serverSideRender") == null)){
+    function switchSide() {
+        if ((sessionStorage.getItem("serverSideRender") == null)) {
             sessionStorage.setItem("serverSideRender", 1);
-        }else{
+        } else {
 
             var isServerSide = sessionStorage.getItem("serverSideRender");
             var state = (isServerSide == 1) ? 0 : 1;

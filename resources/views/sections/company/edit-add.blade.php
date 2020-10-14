@@ -11,7 +11,11 @@
 			
 			<div class="card">
                 <div class="card-header">
-					Create New Company
+					@if(isset($company))
+					Edit Company
+					@else
+					Create Company
+					@endif
 				</div>
 
                 <div class="card-body">
@@ -26,13 +30,17 @@
 						</div>
 					@endif
 					
-					<form action="/company" enctype="multipart/form-data" method="POST">
+					<form action="@if(isset($company))/company/{{$company->id}}@else/company @endif" enctype="multipart/form-data" method="POST">
 
 						@csrf
 
+						@if(isset($company))
+							<input name="_method" type="hidden" value="PATCH">
+						@endif
+
 						<div class="form-group">
 							<label for="example-text-input" class="form-control-label">Company Name</label>
-							<input class="form-control" type="text" value="John Snow" name="name" id="company-text-input">
+							<input class="form-control" type="text" value="{{$company->name}}" name="name" id="company-text-input">
 						</div>
 						<div class="form-group">
 							<label for="example-search-input" class="form-control-label">Logo</label>
@@ -40,11 +48,11 @@
 						</div>
 						<div class="form-group">
 							<label for="example-email-input" class="form-control-label">Email</label>
-							<input class="form-control" type="email" name="email" value="argon@example.com" id="company-email-input">
+							<input class="form-control" type="email" name="email" value="{{$company->email}}" id="company-email-input">
 						</div>
 						<div class="form-group">
 							<label for="example-url-input" class="form-control-label">Website</label>
-							<input class="form-control" type="url" name="website" value="https://www.test-website.com" id="company-url-input">
+							<input class="form-control" type="text" name="website" value="{{$company->website}}" id="company-url-input">
 						</div>
 
 						<button type="submit" class="btn btn-success">Submit</button>

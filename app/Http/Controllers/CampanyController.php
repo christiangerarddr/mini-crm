@@ -75,7 +75,7 @@ class CampanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('sections.company.edit-add', compact('company'));
     }
 
     /**
@@ -92,6 +92,8 @@ class CampanyController extends Controller
 
         $company->update($data);
 
+        return redirect(route('company.index'));
+
     }
 
     /**
@@ -102,15 +104,18 @@ class CampanyController extends Controller
      */
     public function destroy(Company $company)
     {
+
         Storage::delete('company_logo/'.$company->logo);
+
         $company->delete();
+
+        return redirect(route('company.index'));
     }
 
 
     public function validateRequest(){
 
         return request()->validate([
-            'logo' => 'required',
             'name' => 'required',
             'email' => 'required',
             'website' => 'required'
