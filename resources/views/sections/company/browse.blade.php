@@ -31,7 +31,6 @@
 					<table id="companies-table" class="table table-hover ">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">ID</th>
 								<th scope="col">Logo</th>
 								<th scope="col">Name</th>
 								<th scope="col">Email</th>
@@ -63,7 +62,6 @@
 				serverSide: server_side,
 				ajax: '{{ route('companies.all') }}',
 				columns: [
-					{ data: 'id', name: 'id' },
 					{ data: 'logo', name: 'logo',
                     	render: function( data, type, full, meta ) {
 							return "<img src=" + data + " height='100px' weight='100px'>";

@@ -31,7 +31,6 @@
 					<table id="employees-table" class="table table-hover ">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">ID</th>
 								<th scope="col">First Name</th>
 								<th scope="col">Last Name</th>
 								<th scope="col">Email</th>
@@ -62,7 +61,6 @@
 				serverSide: server_side,
 				ajax: '{{ route('employees.all') }}',
 				columns: [
-					{ data: 'id', name: 'id' },
 					{ data: 'first_name', name: 'first_name' },
 					{ data: 'last_name', name: 'last_name' },
 					{ data: 'email', name: 'email' },
