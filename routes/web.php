@@ -41,5 +41,5 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::get('/test', 'CampanyController@showAll');
+Route::get('/test', 'CampanyController@update');
 
