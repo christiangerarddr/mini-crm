@@ -11,11 +11,18 @@
 			
 			<div class="card">
                 <div class="card-header">
-					Employees
+
+					<div class="row">
+
+						<div class="col-lg-2">
+							<h1>Employees</h1>
+						</div>
 					
-					<span class="float-right">
-					<a href="{{route('employee.create')}}"><button class="btn btn-sm btn-success">create</button></a>
-					</span>
+						<div class="col-lg-6">
+							<a href="{{route('employee.create')}}"><button class="btn btn-success">create</button></a>
+						</div>
+
+					</div>
 
 				</div>
 

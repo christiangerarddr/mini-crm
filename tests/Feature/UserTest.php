@@ -41,7 +41,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function all_input_fields_are_required(){
+    public function all_input_fields_in_user_are_required(){
 
         $response = $this->actingAs(User::first())->post('/user', [
             'name' => 'test user',

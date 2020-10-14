@@ -11,7 +11,7 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Company::class, 20)->create()->each(function ($company) {
+        factory(App\Models\Company::class, 11)->create()->each(function ($company) {
             factory(App\Models\Company::class)->create();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use DataTables;
 use DB;
@@ -50,7 +51,10 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        //
+
+        $companies = Company::all();
+
+        return view('sections.employee.edit-add', compact('companies'));
     }
 
     /**
@@ -61,18 +65,11 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $data = $this->validateRequest();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Employee $employee)
-    {
-        //
+        Employee::create($data);
+
+        // return redirect(route('employee.index'));
     }
 
     /**
@@ -83,7 +80,11 @@ class EmployeesController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+
+        $companies = Company::all();
+
+        return view('sections.employee.edit-add', compact('companies', 'employee'));
+
     }
 
     /**
@@ -95,7 +96,11 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $data = $this->validateRequest();
+
+        $employee->update($data);
+
+        return redirect(route('company.index'));
     }
 
     /**
@@ -106,6 +111,22 @@ class EmployeesController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+
+        return redirect(route('company.index'));
+
     }
+
+    public function validateRequest(){
+
+        return request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'company_id' => 'required'
+        ]);
+
+    }
+
 }

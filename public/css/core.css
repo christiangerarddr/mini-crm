@@ -4,6 +4,7 @@
     margin: 0px;
 }
 
+
 /* WELCOME LOGIN */
 
 #inputPassword {
@@ -11,7 +12,9 @@
     margin-bottom: 10px;
 }
 
+
 /* WELCOME LOGIN */
+
 
 /* SIDEBAR */
 
@@ -25,9 +28,23 @@
     overflow: hidden;
 }
 
+
 /* SIDEBAR */
+
+.sidenav-header {
+    height: 20vh !important;
+}
+
+#sidenav-main>div>div.sidenav-header.align-items-center>a>img {
+    max-height: 30vh;
+}
 
 .img-container {
     height: 100px;
     width: 100px;
+}
+
+#myDropDown {
+    max-height: 25vh;
+    overflow: auto;
 }

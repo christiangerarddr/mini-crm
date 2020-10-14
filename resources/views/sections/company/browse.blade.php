@@ -11,12 +11,18 @@
 			
 			<div class="card">
                 <div class="card-header">
-					Company
 					
-					<span class="ml-2">
-					<a href="{{route('company.create')}}"><button class="btn btn-success">create</button></a>
-					<a href="{{route('company.create')}}"><button class="btn btn-danger">mass delete</button></a>
-					</span>
+					<div class="row">
+
+						<div class="col-lg-2">
+							<h1>Company</h1>
+						</div>
+					
+						<div class="col-lg-6">
+							<a href="{{route('company.create')}}"><button class="btn btn-success">create</button></a>
+						</div>
+
+					</div>
 
 				</div>
 
