@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
     }
 
     public function validateRequest(){
