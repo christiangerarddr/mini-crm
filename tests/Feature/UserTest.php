@@ -19,6 +19,7 @@ class UserTest extends TestCase
             'name' => 'user',
             'email' => 'user@admin.com',
             'password' => 'password',
+            'password_confirmation' => 'password',
         ]);
 
         $this->assertCount(2, User::all());
@@ -34,6 +35,7 @@ class UserTest extends TestCase
             'name' => 'updated user',
             'email' => 'user@admin.com',
             'password' => 'password',
+            'password_confirmation' => 'password',
         ]);
 
         $this->assertEquals('updated user', User::all()->last()->name);
@@ -60,10 +62,10 @@ class UserTest extends TestCase
 
         $response = $this->actingAs(User::first())->delete('/user/' . User::all()->last()->id);
 
-        $response->assertOk();
+        $response->assertStatus(302);
 
     }
 
-    //  ./vendor/bin/phpunit --filter all_input_fields_are_required
+    //  ./vendor/bin/phpunit --filter a_user_can_be_edited_by_admin
 
 }

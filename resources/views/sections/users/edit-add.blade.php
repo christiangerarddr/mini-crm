@@ -69,17 +69,17 @@
                             <div class="form-group col-lg-6">
                                 <label for="confirm_password" class="form-control-label">Confirm Password</label>
                                 <input class="form-control" type="password"
-                                    value="@if(isset($user)){{ $user->email }}@endif" name="confirm_password"
+                                    value="@if(isset($user)){{ $user->email }}@endif" name="password_confirmation"
                                     id="confirm_password">
                             </div>
                             
                             <div class="form-group col-lg-12">
-                                <label for="company" class="form-control-label">Roles</label>
-                                <select name="company_id" class="form-control" id="company">
-                                    @foreach($roles as $role)
-                                    <option value="{{$role->id}}">{{$role->name}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="">Roles</label><br>
+                                @foreach($roles as $role)
+                                <input id="role_{{$role->id}}" class="" type="checkbox" name="roles[]" value="{{$role->id}}">
+                                <label for="role_{{$role->id}}" class="form-control-label">{{$role->name}}</label>
+                                <br>
+                                @endforeach
                             </div>
                               
 

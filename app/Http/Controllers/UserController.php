@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
 use DataTables;
 use App\Models\User;
 use App\Models\Role;
@@ -21,7 +24,9 @@ class UserController extends Controller
                     array_push($roles, $value->name);
                 }
 
-                $roles_to_text = implode($roles);
+
+
+                $roles_to_text = ($roles > 1) ? implode(", ", $roles): $roles ;
 
                 return$roles_to_text;
             })
@@ -51,12 +56,24 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
     public function store(Request $request)
     {
 
         $data = $this->validateRequest();
 
-        User::create($data);
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        $user->roles()->sync($request->roles);
 
         return redirect(route('user.index'));
 
@@ -73,9 +90,12 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $this->validateRequest();
 
-        User::find($id)->update($data);
+        User::find($id)->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
 
         return redirect(route('user.index'));
     }
@@ -90,9 +110,9 @@ class UserController extends Controller
     public function validateRequest(){
 
         return request()->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
     }
