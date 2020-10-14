@@ -17,8 +17,6 @@
                                 {{$role->name}}
                             @endforeach
                         </p>
-
-                        <input type="file" name="profile_img" id="">
                     </div>
 
                 </div> {{-- end card body --}}
