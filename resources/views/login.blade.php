@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="margin-top: 10%">
+    <div class="container">
         <div class="row justify-content-center mt-10">
             <div class="col-6">
                 <form action="{{ route('login') }}" class="form-signin" method="POST">
