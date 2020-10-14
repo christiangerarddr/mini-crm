@@ -92,7 +92,11 @@ class CampanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+
+        $data = $this->validateRequest();
+
+        $company->update($data);
+
     }
 
     /**

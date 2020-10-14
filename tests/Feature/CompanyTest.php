@@ -27,7 +27,8 @@ class CompanyTest extends TestCase
 
     }
 
-    public function all_input_fields_are_required(){
+    /** @test */
+    public function all_input_fields_in_company_are_required(){
 
         $response = $this->actingAs(User::first())->post('/company', [
             'logo' => 'http://localhost:8000/storage/default.png',
@@ -40,7 +41,23 @@ class CompanyTest extends TestCase
 
     }
 
+    /** @test */
+    public function a_compnay_can_be_edited_by_admin(){
 
-    //  ./vendor/bin/phpunit --filter all_input_fields_are_required
+        $this->withoutExceptionHandling();
+
+        $response = $this->actingAs(User::first())->patch('/company/' . Company::all()->last()->id, [
+            'logo' => 'http://localhost:8000/storage/default.png',
+            'name' => 'updated test company',
+            'email' => 'testcompany@admin.com',
+            'website' => 'testcompany.com'
+        ]);
+
+        $this->assertEquals('updated test company', Company::all()->last()->name);
+
+    }
+
+
+    //  ./vendor/bin/phpunit --filter a_compnay_can_be_edited_by_admin
 
 }
