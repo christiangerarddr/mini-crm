@@ -6,6 +6,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use DataTables;
 use DB;
+use Storage;
 
 class CampanyController extends Controller
 {
@@ -56,20 +57,14 @@ class CampanyController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $this->validateRequest();
+        
+        $data['logo'] = $data['logo']->getClientOriginalName() . today()->format('dmYHis');
+
+        Storage::disk('local')->put('company_logo/' . $data['logo'], $request->logo);
 
         Company::create($data);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Company  $company
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Company $company)
-    {
-        //
     }
 
     /**
@@ -107,6 +102,7 @@ class CampanyController extends Controller
      */
     public function destroy(Company $company)
     {
+        Storage::delete('company_logo/'.$company->logo);
         $company->delete();
     }
 
