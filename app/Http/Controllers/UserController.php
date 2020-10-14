@@ -28,14 +28,15 @@ class UserController extends Controller
 
                 $roles_to_text = ($roles > 1) ? implode(", ", $roles): $roles ;
 
-                return$roles_to_text;
+                return $roles_to_text;
             })
             ->addColumn('actions', function($user) {
 
+                $view_btn = '<a href="/user/'. $user->id .'" class="btn btn-sm btn-success mr-1">View</a>';
                 $add_btn = '<a href="/user/'. $user->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>';
                 $delete_btn = '<a href="/user/'. $user->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
 
-                return  $add_btn . $delete_btn;
+                return $view_btn . $add_btn . $delete_btn;
                 
             })
             ->rawColumns(['actions'])
@@ -46,6 +47,11 @@ class UserController extends Controller
     public function index()
     {
         return view('sections.users.browse');
+    }
+
+    public function show(User $user)
+    {   
+        return view('sections.users.read', compact('user'));
     }
 
     public function create()

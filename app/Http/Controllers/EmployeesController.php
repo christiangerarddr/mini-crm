@@ -21,10 +21,11 @@ class EmployeesController extends Controller
             })
             ->addColumn('actions', function($employee) {
 
+                $view_btn = '<a href="/employee/'. $employee->id .'" class="btn btn-sm btn-success mr-1">View</a>';
                 $add_btn = '<a href="/employee/'. $employee->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>';
                 $delete_btn = '<a href="/employee/'. $employee->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
 
-                return  $add_btn . $delete_btn;
+                return  $view_btn . $add_btn . $delete_btn;
                 
             })
             ->rawColumns(['actions'])
@@ -42,6 +43,11 @@ class EmployeesController extends Controller
 
         return view('sections.employee.browse');
 
+    }
+
+    public function show(Employee $employee)
+    {   
+        return view('sections.employee.read', compact('employee'));
     }
 
     /**

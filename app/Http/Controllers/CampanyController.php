@@ -23,10 +23,11 @@ class CampanyController extends Controller
         return DataTables::eloquent($companies)
             ->addColumn('actions', function($company) {
 
+                $view_btn = '<a href="/company/'. $company->id .'" class="btn btn-sm btn-success mr-1">View</a>';
                 $add_btn = '<a href="/company/'. $company->id .'/edit" class="btn btn-sm btn-primary mr-1">Edit</a>';
                 $delete_btn = '<a href="/company/'. $company->id .'/delete" class="btn btn-sm btn-danger">Delete</a>';
 
-                return   $add_btn . $delete_btn;
+                return   $view_btn . $add_btn . $delete_btn;
                 
             })
             ->rawColumns(['actions'])
@@ -37,6 +38,11 @@ class CampanyController extends Controller
     public function index()
     {   
         return view('sections.company.browse');
+    }
+
+    public function show(Company $company)
+    {   
+        return view('sections.company.read', compact('company'));
     }
 
     /**
