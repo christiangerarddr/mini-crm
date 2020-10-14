@@ -61,12 +61,7 @@ class CampanyController extends Controller
         $data = $this->validateRequest();
 
         if ($request->hasFile('logo')) {
-            $image = $request->file('logo');
-            $name = $data['logo']->getClientOriginalName() . today()->format('dmYHis');
-            $destinationPath = public_path('/storage/company_logo');
-            $imagePath = $destinationPath. "/".  $name;
-            $image->move($destinationPath, $name);
-            $data['logo'] = $imagePath;
+            $data['logo'] = $this->saveLogo($data['logo']);
         }
 
         Company::create($data);
@@ -98,12 +93,7 @@ class CampanyController extends Controller
         $data = $this->validateRequest();
 
         if ($request->hasFile('logo')) {
-            $image = $request->file('logo');
-            $name = $data['logo']->getClientOriginalName() . today()->format('dmYHis');
-            $destinationPath = public_path('/storage/company_logo');
-            $imagePath = $destinationPath. "/".  $name;
-            $image->move($destinationPath, $name);
-            $data['logo'] = $imagePath;
+            $data['logo'] = $this->saveLogo($data['logo']);
         }
 
         $company->update($data);
@@ -132,11 +122,22 @@ class CampanyController extends Controller
     public function validateRequest(){
 
         return request()->validate([
-            'name' => 'required',
+            'name' => 'required|unique:companies,name',
             'logo' => 'file',
-            'email' => 'required',
-            'website' => 'required'
+            'email' => 'required|unique:companies,email',
+            'website' => 'required|unique:companies,website'
         ]);
+
+    }
+
+    public function saveLogo($file){
+
+        $image = $file;
+        $name = $file->getClientOriginalName() . today()->format('dmYHis');
+        $destinationPath = public_path('/storage/company_logo');
+        $imagePath = "/storage/company_logo/" .  $name;
+        $image->move($destinationPath, $name);
+        return $imagePath;
 
     }
 

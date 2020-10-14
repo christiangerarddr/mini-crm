@@ -58,7 +58,11 @@
 				ajax: '{{ route('companies.all') }}',
 				columns: [
 					{ data: 'id', name: 'id' },
-					{ data: 'logo', name: 'logo' },
+					{ data: 'logo', name: 'logo',
+                    	render: function( data, type, full, meta ) {
+							return "<img src=" + data + ">";
+						}
+                    },
 					{ data: 'name', name: 'name' },
 					{ data: 'email', name: 'email' },
 					{ data: 'website', name: 'website' },
