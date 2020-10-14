@@ -20,7 +20,7 @@ $factory->define(Company::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'logo' => asset('/storage/default.png'),
+        'logo' => asset('default.png'),
         'website' => 'www.' . Str::random(8) . '.com',
     ];
 });

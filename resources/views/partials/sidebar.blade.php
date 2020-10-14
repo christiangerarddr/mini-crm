@@ -3,7 +3,7 @@
         <!-- Brand -->
         <div class="sidenav-header  align-items-center">
             <a class="navbar-brand w-100 h-100 p-0" href="{{route('dashboard')}}">
-                <img src="{{ asset('crm.gif') }}" class="img-fluid" alt="logo">
+                <img src="{{ asset('crm2.gif') }}" class="img-fluid" alt="logo">
             </a>
         </div>
         <div class="navbar-inner">

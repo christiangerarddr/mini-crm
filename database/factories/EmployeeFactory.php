@@ -22,6 +22,6 @@ $factory->define(Employee::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->safeEmail,
         'phone' => $faker->phoneNumber,
-        'company_id' => $faker->numberBetween(1, 40)
+        'company_id' => $faker->numberBetween(1, 20)
     ];
 });
